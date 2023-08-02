@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:space/presentation/launch/bloc_launch/bloc_launch.dart';
+import 'package:space/presentation/rockets/bloc_rockets/bloc_rockets.dart';
 import 'package:space/presentation/rockets/widget/modal_bottom.dart';
 import 'package:space/theme/theme_provider.dart';
 
@@ -37,12 +38,13 @@ class RocketsScreen extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
           backgroundColor: themeData.primaryColor,
-          body: BlocBuilder<LaunchBloc, LaunchState>(builder: (context, state) {
-            state.when(
+          body:
+              BlocBuilder<RocketsBloc, RocketsState>(builder: (context, state) {
+            return state.when(
               loading: () {
                 return const Center(child: CircularProgressIndicator());
               },
-              success: (allLaunches) {
+              success: (allRockets) {
                 return Stack(
                   children: [
                     Image.asset(
@@ -53,13 +55,12 @@ class RocketsScreen extends StatelessWidget {
                     ),
                     ListView(
                       children: [
-                        ...allLaunches
-                            .map((oneLaunchInfo) => Text(oneLaunchInfo.name)),
+                        ...allRockets.map((oneRocket) => Text(oneRocket.name)),
                         const SizedBox(height: 300),
                         TextButton(
                           onPressed: () => context
                               .read<LaunchBloc>()
-                              .add((const LaunchEvent.fetch())),
+                              .add(const LaunchEvent.fetch()),
                           child: Text('data'),
                         ),
                         Container(
@@ -69,14 +70,26 @@ class RocketsScreen extends StatelessWidget {
                                   topLeft: Radius.circular(24),
                                   topRight: Radius.circular(24))),
                           height: 800,
-                          child: const Opacity(
+                          child: Opacity(
                             opacity: 0.7,
-                            child: Center(
-                              child: Text(
-                                'Прокручиваемая панель',
-                                style: TextStyle(fontSize: 24),
-                              ),
-                            ),
+                            child: Column(children: [
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Прокручиваемая панель',
+                                    style: TextStyle(fontSize: 24),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () => _showModal(context),
+                                    child: SvgPicture.asset(
+                                      'assets/images/settings.svg',
+                                      width: 30,
+                                      height: 30,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ]),
                           ),
                         ),
                       ],
@@ -88,56 +101,6 @@ class RocketsScreen extends StatelessWidget {
                 return const Center(
                     child: Text('Something went wrong, please try again!'));
               },
-            );
-            return Stack(
-              children: [
-                Image.asset(
-                  'assets/images/auth_screen.png',
-                  fit: BoxFit.cover,
-                  height: double.infinity,
-                  width: double.infinity,
-                ),
-                ListView(
-                  children: [
-                    const SizedBox(height: 300),
-                    TextButton(
-                      onPressed: () => context
-                          .read<LaunchBloc>()
-                          .add((const LaunchEvent.fetch())),
-                      child: Text('data'),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: themeData.primaryColor,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(24),
-                              topRight: Radius.circular(24))),
-                      height: 800,
-                      child: Opacity(
-                        opacity: 0.7,
-                        child: Column(children: [
-                          Row(
-                            children: [
-                              const Text(
-                                'Прокручиваемая панель',
-                                style: TextStyle(fontSize: 24),
-                              ),
-                              GestureDetector(
-                                onTap: () => _showModal(context),
-                                child: SvgPicture.asset(
-                                  'assets/images/settings.svg',
-                                  width: 30,
-                                  height: 30,
-                                ),
-                              ),
-                            ],
-                          )
-                        ]),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
             );
           })),
     );

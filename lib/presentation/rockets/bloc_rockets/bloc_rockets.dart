@@ -10,7 +10,7 @@ class RocketsState with _$RocketsState {
   const factory RocketsState.loading() = _RocketsLoading;
   // TODO объект в еррор
   const factory RocketsState.error() = _RocketsError;
-  const factory RocketsState.success(List<Rocket> launches) = _RocketsSuccess;
+  const factory RocketsState.success(List<Rocket> rockets) = _RocketsSuccess;
 }
 
 @freezed

@@ -170,8 +170,8 @@ Rocket _$RocketFromJson(Map<String, dynamic> json) {
 mixin _$Rocket {
   Unit get height => throw _privateConstructorUsedError;
   Unit get diameter => throw _privateConstructorUsedError;
-  Mass get mass => throw _privateConstructorUsedError;
-  DateTime get firstFlight => throw _privateConstructorUsedError;
+  Mass get mass =>
+      throw _privateConstructorUsedError; // required DateTime firstStage,
   String get country => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
@@ -186,12 +186,7 @@ abstract class $RocketCopyWith<$Res> {
       _$RocketCopyWithImpl<$Res, Rocket>;
   @useResult
   $Res call(
-      {Unit height,
-      Unit diameter,
-      Mass mass,
-      DateTime firstFlight,
-      String country,
-      String name});
+      {Unit height, Unit diameter, Mass mass, String country, String name});
 
   $UnitCopyWith<$Res> get height;
   $UnitCopyWith<$Res> get diameter;
@@ -214,7 +209,6 @@ class _$RocketCopyWithImpl<$Res, $Val extends Rocket>
     Object? height = null,
     Object? diameter = null,
     Object? mass = null,
-    Object? firstFlight = null,
     Object? country = null,
     Object? name = null,
   }) {
@@ -231,10 +225,6 @@ class _$RocketCopyWithImpl<$Res, $Val extends Rocket>
           ? _value.mass
           : mass // ignore: cast_nullable_to_non_nullable
               as Mass,
-      firstFlight: null == firstFlight
-          ? _value.firstFlight
-          : firstFlight // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
@@ -278,12 +268,7 @@ abstract class _$$_RocketCopyWith<$Res> implements $RocketCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {Unit height,
-      Unit diameter,
-      Mass mass,
-      DateTime firstFlight,
-      String country,
-      String name});
+      {Unit height, Unit diameter, Mass mass, String country, String name});
 
   @override
   $UnitCopyWith<$Res> get height;
@@ -306,7 +291,6 @@ class __$$_RocketCopyWithImpl<$Res>
     Object? height = null,
     Object? diameter = null,
     Object? mass = null,
-    Object? firstFlight = null,
     Object? country = null,
     Object? name = null,
   }) {
@@ -323,10 +307,6 @@ class __$$_RocketCopyWithImpl<$Res>
           ? _value.mass
           : mass // ignore: cast_nullable_to_non_nullable
               as Mass,
-      firstFlight: null == firstFlight
-          ? _value.firstFlight
-          : firstFlight // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
@@ -347,7 +327,6 @@ class _$_Rocket implements _Rocket {
       {required this.height,
       required this.diameter,
       required this.mass,
-      required this.firstFlight,
       required this.country,
       required this.name});
 
@@ -360,8 +339,7 @@ class _$_Rocket implements _Rocket {
   final Unit diameter;
   @override
   final Mass mass;
-  @override
-  final DateTime firstFlight;
+// required DateTime firstStage,
   @override
   final String country;
   @override
@@ -369,7 +347,7 @@ class _$_Rocket implements _Rocket {
 
   @override
   String toString() {
-    return 'Rocket(height: $height, diameter: $diameter, mass: $mass, firstFlight: $firstFlight, country: $country, name: $name)';
+    return 'Rocket(height: $height, diameter: $diameter, mass: $mass, country: $country, name: $name)';
   }
 
   @override
@@ -381,16 +359,14 @@ class _$_Rocket implements _Rocket {
             (identical(other.diameter, diameter) ||
                 other.diameter == diameter) &&
             (identical(other.mass, mass) || other.mass == mass) &&
-            (identical(other.firstFlight, firstFlight) ||
-                other.firstFlight == firstFlight) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, height, diameter, mass, firstFlight, country, name);
+  int get hashCode =>
+      Object.hash(runtimeType, height, diameter, mass, country, name);
 
   @JsonKey(ignore: true)
   @override
@@ -411,7 +387,6 @@ abstract class _Rocket implements Rocket {
       {required final Unit height,
       required final Unit diameter,
       required final Mass mass,
-      required final DateTime firstFlight,
       required final String country,
       required final String name}) = _$_Rocket;
 
@@ -423,9 +398,7 @@ abstract class _Rocket implements Rocket {
   Unit get diameter;
   @override
   Mass get mass;
-  @override
-  DateTime get firstFlight;
-  @override
+  @override // required DateTime firstStage,
   String get country;
   @override
   String get name;

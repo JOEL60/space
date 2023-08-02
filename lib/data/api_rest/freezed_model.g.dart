@@ -20,7 +20,6 @@ _$_Rocket _$$_RocketFromJson(Map<String, dynamic> json) => _$_Rocket(
       height: Unit.fromJson(json['height'] as Map<String, dynamic>),
       diameter: Unit.fromJson(json['diameter'] as Map<String, dynamic>),
       mass: Mass.fromJson(json['mass'] as Map<String, dynamic>),
-      firstFlight: DateTime.parse(json['firstFlight'] as String),
       country: json['country'] as String,
       name: json['name'] as String,
     );
@@ -29,7 +28,6 @@ Map<String, dynamic> _$$_RocketToJson(_$_Rocket instance) => <String, dynamic>{
       'height': instance.height,
       'diameter': instance.diameter,
       'mass': instance.mass,
-      'firstFlight': instance.firstFlight.toIso8601String(),
       'country': instance.country,
       'name': instance.name,
     };

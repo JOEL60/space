@@ -20,7 +20,7 @@ abstract class Rocket with _$Rocket {
     required Unit height,
     required Unit diameter,
     required Mass mass,
-    required DateTime firstFlight,
+    // required DateTime firstStage,
     required String country,
     required String name,
   }) = _Rocket;

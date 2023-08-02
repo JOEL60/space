@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:provider/provider.dart';
-import 'package:space/presentation/launch/bloc_launch/bloc_launch.dart';
+import 'package:space/presentation/rockets/bloc_rockets/bloc_rockets.dart';
 import 'package:space/presentation/rockets/rockets_screen.dart';
 import 'package:space/theme/styles.dart';
-
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splashScreen';
@@ -26,14 +25,14 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void startTimer(BuildContext context) {
-    int seconds = 5; 
+    int seconds = 5;
 
     delayedNavigation(context, seconds);
   }
 
   void delayedNavigation(BuildContext context, int seconds) {
     Future.delayed(Duration(seconds: seconds), () {
-      context.read<LaunchBloc>().add(const LaunchEvent.fetch());
+      context.read<RocketsBloc>().add(const RocketsEvent.fetch());
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const RocketsScreen()),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:space/data/api_rest/api_rest.dart';
 import 'package:space/data/dio.dart';
+import 'package:space/presentation/rockets/bloc_rockets/bloc_rockets.dart';
 import 'package:space/repository/data_repository.dart';
 import 'package:space/routes.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +37,10 @@ class MyApp extends StatelessWidget {
                 providers: [
                   BlocProvider<LaunchBloc>(
                       create: (context) =>
-                          LaunchBloc(dataRepository: context.read()))
+                          LaunchBloc(dataRepository: context.read())),
+                  BlocProvider<RocketsBloc>(
+                      create: (context) =>
+                          RocketsBloc(dataRepository: context.read()))
                 ],
                 child: ChangeNotifierProvider<ThemeModel>(
                     create: (_) => ThemeModel(),

@@ -20,21 +20,21 @@ mixin _$RocketsState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Rocket> launches) success,
+    required TResult Function(List<Rocket> rockets) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Rocket> launches)? success,
+    TResult? Function(List<Rocket> rockets)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Rocket> launches)? success,
+    TResult Function(List<Rocket> rockets)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ class _$_RocketsLoading implements _RocketsLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Rocket> launches) success,
+    required TResult Function(List<Rocket> rockets) success,
   }) {
     return loading();
   }
@@ -130,7 +130,7 @@ class _$_RocketsLoading implements _RocketsLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Rocket> launches)? success,
+    TResult? Function(List<Rocket> rockets)? success,
   }) {
     return loading?.call();
   }
@@ -140,7 +140,7 @@ class _$_RocketsLoading implements _RocketsLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Rocket> launches)? success,
+    TResult Function(List<Rocket> rockets)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -228,7 +228,7 @@ class _$_RocketsError implements _RocketsError {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Rocket> launches) success,
+    required TResult Function(List<Rocket> rockets) success,
   }) {
     return error();
   }
@@ -238,7 +238,7 @@ class _$_RocketsError implements _RocketsError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Rocket> launches)? success,
+    TResult? Function(List<Rocket> rockets)? success,
   }) {
     return error?.call();
   }
@@ -248,7 +248,7 @@ class _$_RocketsError implements _RocketsError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Rocket> launches)? success,
+    TResult Function(List<Rocket> rockets)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -302,7 +302,7 @@ abstract class _$$_RocketsSuccessCopyWith<$Res> {
           _$_RocketsSuccess value, $Res Function(_$_RocketsSuccess) then) =
       __$$_RocketsSuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Rocket> launches});
+  $Res call({List<Rocket> rockets});
 }
 
 /// @nodoc
@@ -316,12 +316,12 @@ class __$$_RocketsSuccessCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? launches = null,
+    Object? rockets = null,
   }) {
     return _then(_$_RocketsSuccess(
-      null == launches
-          ? _value._launches
-          : launches // ignore: cast_nullable_to_non_nullable
+      null == rockets
+          ? _value._rockets
+          : rockets // ignore: cast_nullable_to_non_nullable
               as List<Rocket>,
     ));
   }
@@ -330,19 +330,19 @@ class __$$_RocketsSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RocketsSuccess implements _RocketsSuccess {
-  const _$_RocketsSuccess(final List<Rocket> launches) : _launches = launches;
+  const _$_RocketsSuccess(final List<Rocket> rockets) : _rockets = rockets;
 
-  final List<Rocket> _launches;
+  final List<Rocket> _rockets;
   @override
-  List<Rocket> get launches {
-    if (_launches is EqualUnmodifiableListView) return _launches;
+  List<Rocket> get rockets {
+    if (_rockets is EqualUnmodifiableListView) return _rockets;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_launches);
+    return EqualUnmodifiableListView(_rockets);
   }
 
   @override
   String toString() {
-    return 'RocketsState.success(launches: $launches)';
+    return 'RocketsState.success(rockets: $rockets)';
   }
 
   @override
@@ -350,12 +350,12 @@ class _$_RocketsSuccess implements _RocketsSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RocketsSuccess &&
-            const DeepCollectionEquality().equals(other._launches, _launches));
+            const DeepCollectionEquality().equals(other._rockets, _rockets));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_launches));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_rockets));
 
   @JsonKey(ignore: true)
   @override
@@ -368,9 +368,9 @@ class _$_RocketsSuccess implements _RocketsSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Rocket> launches) success,
+    required TResult Function(List<Rocket> rockets) success,
   }) {
-    return success(launches);
+    return success(rockets);
   }
 
   @override
@@ -378,9 +378,9 @@ class _$_RocketsSuccess implements _RocketsSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Rocket> launches)? success,
+    TResult? Function(List<Rocket> rockets)? success,
   }) {
-    return success?.call(launches);
+    return success?.call(rockets);
   }
 
   @override
@@ -388,11 +388,11 @@ class _$_RocketsSuccess implements _RocketsSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Rocket> launches)? success,
+    TResult Function(List<Rocket> rockets)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(launches);
+      return success(rockets);
     }
     return orElse();
   }
@@ -433,10 +433,9 @@ class _$_RocketsSuccess implements _RocketsSuccess {
 }
 
 abstract class _RocketsSuccess implements RocketsState {
-  const factory _RocketsSuccess(final List<Rocket> launches) =
-      _$_RocketsSuccess;
+  const factory _RocketsSuccess(final List<Rocket> rockets) = _$_RocketsSuccess;
 
-  List<Rocket> get launches;
+  List<Rocket> get rockets;
   @JsonKey(ignore: true)
   _$$_RocketsSuccessCopyWith<_$_RocketsSuccess> get copyWith =>
       throw _privateConstructorUsedError;
