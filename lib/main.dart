@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:space/data/api_rest/api_rest.dart';
 import 'package:space/data/dio.dart';
 import 'package:space/presentation/rockets/bloc_rockets/bloc_rockets.dart';
+import 'package:space/presentation/rockets/bloc_user_settings/user_theme/bloc_user_theme.dart';
+import 'package:space/presentation/rockets/bloc_user_settings/user_unit/bloc_user_unit.dart';
 import 'package:space/repository/data_repository.dart';
 import 'package:space/routes.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +40,10 @@ class MyApp extends StatelessWidget {
                   BlocProvider<LaunchBloc>(
                       create: (context) =>
                           LaunchBloc(dataRepository: context.read())),
+                  BlocProvider<SettingsThemeBloc>(
+                      create: (context) => SettingsThemeBloc(isDark: true)),
+                  BlocProvider<SettingsUnitBloc>(
+                      create: (context) => SettingsUnitBloc()),
                   BlocProvider<RocketsBloc>(
                       create: (context) =>
                           RocketsBloc(dataRepository: context.read()))
@@ -49,7 +55,6 @@ class MyApp extends StatelessWidget {
                         return ThemeProvider(
                             themeData: themeModel.themeData,
                             toggleTheme: themeModel.toggleTheme,
-                            // key: ,
                             child: MaterialApp(
                               home: const SplashScreen(),
                               routes: routes,

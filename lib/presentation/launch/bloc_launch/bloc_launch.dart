@@ -19,12 +19,12 @@ class LaunchEvent with _$LaunchEvent {
 
 class LaunchBloc extends Bloc<LaunchEvent, LaunchState> {
   final DataRepository dataRepository;
+
   LaunchBloc({required this.dataRepository}) : super(const _LaunchLoading()) {
     on<LaunchEvent>(_onLaunchEvent);
   }
 
-  void _onLaunchEvent(
-      LaunchEvent event, Emitter<LaunchState> emit) async {
+  void _onLaunchEvent(LaunchEvent event, Emitter<LaunchState> emit) async {
     emit(const LaunchState.loading());
     try {
       final result = await dataRepository.dataRest.getLaunches();

@@ -1,11 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:space/presentation/rockets/widget/unitSwitcher.dart';
-import 'package:space/theme/theme_provider.dart';
+import 'package:space/presentation/rockets/widget/unit_switcher.dart';
+import 'package:space/theme/styles.dart';
 
 class ModalEditImage extends StatelessWidget {
-  const ModalEditImage({super.key});
+  final bool isDarkTheme;
+  final int initialValueHeight;
+  final void Function(int) changeUnitType;
+  final void Function(bool) changeTheme;
+
+  const ModalEditImage(
+      {super.key,
+      required this.isDarkTheme,
+      required this.changeTheme,
+      required this.initialValueHeight,
+      required this.changeUnitType});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +32,7 @@ class ModalEditImage extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(vertical: 5),
                       height: 5,
                       decoration: const BoxDecoration(
-                          color: Colors.amber,
+                          color: Colors.white,
                           borderRadius:
                               BorderRadius.all(Radius.circular(12.0))),
                     ),
@@ -33,29 +42,18 @@ class ModalEditImage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(width: 24),
+                        Container(width: 65),
                         Container(
                           alignment: Alignment.center,
-                          child: const Text(
-                            'Settings',
-                            style: TextStyle(
-                              color: Colors.amber,
-                              fontFamily: 'Inter',
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
-                              height: 1.2,
-                            ),
-                          ),
+                          child: const Text('Settings',
+                              style: ProjectStyle.regularText16px),
                         ),
                         InkWell(
-                          onTap: () => Navigator.of(context).pop(),
-                          child: SvgPicture.asset(
-                            'assets/images/close.svg',
-                            width: 25,
-                            height: 25,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
+                            onTap: () => Navigator.of(context).pop(),
+                            child: const Text(
+                              'Закрыть',
+                              style: ProjectStyle.boldText16px,
+                            )),
                       ]),
                   const SizedBox(height: 40),
                   GestureDetector(
@@ -68,25 +66,58 @@ class ModalEditImage extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.symmetric(horizontal: 8),
                             child: const Text('Unit settings',
-                                style: TextStyle(
-                                  color: Colors.amber,
-                                  fontFamily: 'Inter',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.2,
-                                ),
+                                style: ProjectStyle.boldText16px,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis),
                           ),
                         ]),
                   ),
-                  UnitSwitcher(onTap: () => {}),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Высота',
+                          style: ProjectStyle.regularText16px,
+                        ),
+                        SizedBox(
+                          width: 180,
+                          child: UnitSwitcher(
+                              changeUnitType: changeUnitType,
+                              initialValueHeight: initialValueHeight),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Диаметер',
+                          style: ProjectStyle.regularText16px,
+                        ),
+                        SizedBox(
+                          width: 180,
+                          child: UnitSwitcher(
+                              changeUnitType: changeUnitType,
+                              initialValueHeight: initialValueHeight),
+                        ),
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 15),
                   Container(
                     height: 0.5,
-                    color: Colors.amber,
+                    color: Colors.white,
                     width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.only(left: 40),
+                    margin: const EdgeInsets.symmetric(horizontal: 40),
                   ),
                   const SizedBox(height: 20),
                   GestureDetector(
@@ -99,26 +130,16 @@ class ModalEditImage extends StatelessWidget {
                         children: [
                           Container(
                             margin: const EdgeInsets.symmetric(horizontal: 8),
-                            child: const Text(
-                              'Change theme',
-                              style: TextStyle(
-                                color: Colors.amber,
-                                fontFamily: 'Inter',
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                height: 1.2,
-                              ),
-                            ),
+                            child: const Text('Change theme',
+                                style: ProjectStyle.regularText16px),
                           ),
                           Transform.scale(
                               scale: 0.8,
                               child: CupertinoSwitch(
-                                value: true,
-                                activeColor: Colors.amber,
-                                onChanged: (bool value) {
-                                  ThemeProvider.of(context).toggleTheme();
-                                },
-                              )),
+                                  value: isDarkTheme,
+                                  activeColor: Colors.amber,
+                                  onChanged: (bool isDarkTheme) =>
+                                      changeTheme(isDarkTheme))),
                         ]),
                   ),
                   const SizedBox(height: 40),

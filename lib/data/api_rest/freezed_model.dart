@@ -1,5 +1,3 @@
-
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'freezed_model.freezed.dart';
@@ -8,7 +6,7 @@ part 'freezed_model.g.dart';
 @freezed
 abstract class Launch with _$Launch {
   @JsonSerializable()
-  factory Launch({required int id, required String name}) = _Launch;
+  factory Launch({required String rocket, required String name}) = _Launch;
 
   factory Launch.fromJson(Map<String, dynamic> json) => _$LaunchFromJson(json);
 }
@@ -17,15 +15,44 @@ abstract class Launch with _$Launch {
 abstract class Rocket with _$Rocket {
   @JsonSerializable()
   factory Rocket({
+    required String id,
     required Unit height,
     required Unit diameter,
     required Mass mass,
-    // required DateTime firstStage,
+    required List<String> flickr_images,
+    required int cost_per_launch,
+    required DateTime first_flight,
     required String country,
     required String name,
+    required FirstStage first_stage,
+    required SecondStage second_stage,
   }) = _Rocket;
 
   factory Rocket.fromJson(Map<String, dynamic> json) => _$RocketFromJson(json);
+}
+
+@freezed
+abstract class FirstStage with _$FirstStage {
+  @JsonSerializable()
+  factory FirstStage(
+      {required int engines,
+      required double fuel_amount_tons,
+      int? burn_time_sec}) = _FirstStage;
+
+  factory FirstStage.fromJson(Map<String, dynamic> json) =>
+      _$FirstStageFromJson(json);
+}
+
+@freezed
+abstract class SecondStage with _$SecondStage {
+  @JsonSerializable()
+  factory SecondStage(
+      {required int engines,
+      required double fuel_amount_tons,
+      int? burn_time_sec}) = _SecondStage;
+
+  factory SecondStage.fromJson(Map<String, dynamic> json) =>
+      _$SecondStageFromJson(json);
 }
 
 @freezed

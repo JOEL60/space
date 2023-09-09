@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'bloc_settings_user_theme.dart';
+part of 'bloc_user_theme.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -199,7 +199,7 @@ class __$$_SetThemeSettingsSuccessCopyWithImpl<$Res>
     Object? darkTheme = null,
   }) {
     return _then(_$_SetThemeSettingsSuccess(
-      null == darkTheme
+      darkTheme: null == darkTheme
           ? _value.darkTheme
           : darkTheme // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -210,7 +210,7 @@ class __$$_SetThemeSettingsSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SetThemeSettingsSuccess implements _SetThemeSettingsSuccess {
-  const _$_SetThemeSettingsSuccess(this.darkTheme);
+  const _$_SetThemeSettingsSuccess({required this.darkTheme});
 
   @override
   final bool darkTheme;
@@ -304,7 +304,7 @@ class _$_SetThemeSettingsSuccess implements _SetThemeSettingsSuccess {
 }
 
 abstract class _SetThemeSettingsSuccess implements SettingsThemeState {
-  const factory _SetThemeSettingsSuccess(final bool darkTheme) =
+  const factory _SetThemeSettingsSuccess({required final bool darkTheme}) =
       _$_SetThemeSettingsSuccess;
 
   bool get darkTheme;

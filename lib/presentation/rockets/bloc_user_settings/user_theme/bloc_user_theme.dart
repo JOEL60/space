@@ -4,15 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'bloc_settings_user_theme.freezed.dart';
+part 'bloc_user_theme.freezed.dart';
 
 late SharedPreferences flutterSharedPreference;
 
 @freezed
-// @CopyWith()
-class SettingsThemeState with _$SettingsThemeState{
+class SettingsThemeState with _$SettingsThemeState {
   const factory SettingsThemeState.initial() = _SettingsThemeInitial;
-  const factory SettingsThemeState.themeSettings(bool darkTheme) =
+  const factory SettingsThemeState.themeSettings({required bool darkTheme}) =
       _SetThemeSettingsSuccess;
 }
 
@@ -25,8 +24,8 @@ class SettingsThemeEvent with _$SettingsThemeEvent {
 class SettingsThemeBloc extends Bloc<SettingsThemeEvent, SettingsThemeState> {
   static const String themeStorageKey = 'themeStorageKey';
 
-  SettingsThemeBloc(bool isDark)
-      : super(SettingsThemeState.themeSettings(isDark)) {
+  SettingsThemeBloc({required bool isDark})
+      : super(SettingsThemeState.themeSettings(darkTheme: isDark)) {
     on<SettingsThemeEvent>(_onSetSettingsUserTheme);
   }
 
@@ -38,6 +37,10 @@ class SettingsThemeBloc extends Bloc<SettingsThemeEvent, SettingsThemeState> {
   void _onSetSettingsUserTheme(
       SettingsThemeEvent event, Emitter<SettingsThemeState> emit) async {
     await _setThemeSettings(event.isDark);
-    emit(state.copyWith(darkTheme: event.isDark));
+    // если стейтов много то, необходимо делать проверку на стейт
+    if (state is _SetThemeSettingsSuccess) {
+      final successState = state as _SetThemeSettingsSuccess;
+      emit(successState.copyWith(darkTheme: event.isDark));
+    }
   }
 }

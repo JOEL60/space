@@ -14,7 +14,7 @@ class ProjectStyle {
       labelStyle: TextStyle(
         color: Colors.white,
         fontSize: 14,
-        fontFamily: "Inter",
+        fontFamily: "LabGrotesque",
       ));
 
   static const keyBoardType = TextInputType.phone;
@@ -22,7 +22,33 @@ class ProjectStyle {
   static const textInputStyle = TextStyle(
     color: Colors.white,
     fontSize: 18,
-    fontFamily: 'Inter',
+    fontFamily: 'LabGrotesque',
+  );
+
+  static const regularText14px = TextStyle(
+    color: Colors.white,
+    fontSize: 14,
+    fontFamily: 'LabGrotesque',
+  );
+
+  static const regularText16px = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontFamily: 'LabGrotesque',
+  );
+
+  static const boldText16px = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'LabGrotesque',
+  );
+
+  static const boldText24px = TextStyle(
+    color: Colors.white,
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'LabGrotesque',
   );
 
   static var inputFormatter = [
@@ -37,9 +63,5 @@ class ProjectStyle {
   ];
 
   static const colorizeTextStyle = TextStyle(
-    
-    fontSize: 50.0,
-    fontFamily: 'Horizon',
-    fontWeight: FontWeight.w600
-  );
+      fontSize: 50.0, fontFamily: 'Horizon', fontWeight: FontWeight.w600);
 }
